@@ -40,6 +40,10 @@ export const noteSlice = createSlice({
         setFilter: (state, action) => {
             state.filter = action.payload.value;
         },
+        removeNote: (state, action) => {
+            const { id } = action.payload;
+            state.items = state.items.filter((item) => item.id !== id);
+        },
         addNewNotes : (state) =>{
             const lastTodo = state.items.at(-1);
             const lastID = lastTodo ? lastTodo.id : -1;
@@ -53,5 +57,5 @@ export const noteSlice = createSlice({
     }
 })
 
-export const {addNewNotes ,handleInput,handleColor,setFilter} = noteSlice.actions
+export const {addNewNotes ,handleInput,handleColor,setFilter,removeNote} = noteSlice.actions
 export default noteSlice.reducer
